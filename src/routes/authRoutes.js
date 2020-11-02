@@ -2,10 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
+const Log = mongoose.model('Log');
 const router = express.Router();
 
-const createAndSendToken = (userId, res) => {
+const createAndSendToken = async (userId, res) => {
   const token = jwt.sign({ userId }, process.env.JWT_KEY);
+  const log = new Log({ user: userId, do: 'createToken' });
+  await log.save();
   res.send({ token });
 };
 

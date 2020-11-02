@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./models/User');
+require('./models/Log');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
